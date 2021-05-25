@@ -16,6 +16,9 @@ Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])
 Route::post('/cart', [\App\Http\Controllers\CartController::class, 'store'])
     ->name('cart.store')->middleware('auth');
 
+Route::patch('/cart/{product}', [\App\Http\Controllers\CartController::class, 'update'])
+    ->name('cart.update')->middleware('auth');
+
 Route::delete('/cart/{product}', [\App\Http\Controllers\CartController::class, 'destroy'])
     ->name('cart.destroy')->middleware('auth');
 

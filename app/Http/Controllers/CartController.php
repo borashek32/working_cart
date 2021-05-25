@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -43,12 +44,12 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('error', 'Product is already in your cart');
         }
 
-        Cart::add([
-            'id'    => $request->input('id'),
-            'name'  => $request->input('name'),
-            'price' => $request->input('price'),
-            'qty'   => $request->input('qty')
-        ])
+        Cart::add(
+            $request->id,
+            $request->name,
+            1,
+            $request->price
+        )
             ->associate('App\Models\Product');
 
         return redirect()
@@ -116,11 +117,23 @@ class CartController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|between:1,5'
+        ]);
+
+        if ($validator->fails()) {
+            session()->flash('error', 'Quantity must be between 1 and 5');
+            return response()->json(['success' => false], 400);
+        }
+
+        Cart::update($id, $request->quantity);
+
+        session()->flash('success', 'Quantity of the product was updated successfully');
+        return response()->json(['success' => true]);
     }
 
     /**
