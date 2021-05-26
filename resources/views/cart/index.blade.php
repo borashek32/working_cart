@@ -13,6 +13,7 @@
         @include('includes.products-in-cart')
 
         @include('includes.save-for-later')
+
     </div>
 @endsection
 

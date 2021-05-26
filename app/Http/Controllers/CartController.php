@@ -148,4 +148,5 @@ class CartController extends Controller
 
         return back()->with('success', 'Product was successfully removed from your cart');
     }
+
 }

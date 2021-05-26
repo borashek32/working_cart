@@ -35,6 +35,13 @@ Route::get('/empty', function () {
     Cart::destroy();
 });
 
+// Checkout routes
+Route::get('/shipment', [\App\Http\Controllers\CheckoutController::class, 'shipment'])
+    ->name('shipment');
+
+Route::resource('/orders', \App\Http\Controllers\OrderController::class)
+    ->middleware('auth');
+
 // Auth routes
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
