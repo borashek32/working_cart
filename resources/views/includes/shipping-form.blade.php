@@ -7,6 +7,14 @@
 
     <h3>Please, fill in your shipping information</h3>
 
+    <p class="text-xs">*For now we can offer pickup or a delivery through transport company.<br>
+        Call our manager
+        <a href="tel:+79999999999" class="textAddress">
+            +7 999 9999999
+        </a>
+        to discuss the details
+    </p>
+
     <br>
     <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="shipping_fullname">
@@ -64,7 +72,7 @@
                   name="notes" id="notes" type="text" placeholder="Leave your notes here"></textarea>
     </div>
 
-    @include('includes.billing-section')
+{{--    @include('includes.billing-section')--}}
 
     @include('includes.payment-methods')
 

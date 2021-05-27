@@ -41,7 +41,8 @@ class OrderController extends Controller
             'shipping_address'     =>  'required',
             'shipping_city'        =>  'required',
             'shipping_postcode'    =>  'required',
-            'shipping_phone'       =>  'required'
+            'shipping_phone'       =>  'required',
+            'payment_method'       =>  'required'
         ]);
 
         $order = new Order();
@@ -80,7 +81,10 @@ class OrderController extends Controller
         $cartProducts = Cart::content();
         foreach ($cartProducts as $product)
             $order->products()->attach($product->id);
-
+        //payment method
+        if (request('payment_method') == 'paypal') {
+            //redirect to paypal
+        }
         //empty cart
         Cart::destroy();
         //send email to customer

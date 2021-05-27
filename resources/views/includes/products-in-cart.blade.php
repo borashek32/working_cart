@@ -34,7 +34,7 @@
                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-sm leading-5">
                     <select type="number" class="quantity outline-none focus:outline-none text-center w-20 bg-white
                             font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default
-                            flex items-center text-gray-700  outline-none" data-id="{{ $item->rowId }}">
+                            flex items-center text-gray-700  outline-none" name="quantity" data-id="{{ $item->rowId }}">
                         @for ($i = 1; $i < 5 + 1 ; $i++)
                             <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                         @endfor

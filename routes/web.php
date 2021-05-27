@@ -42,7 +42,21 @@ Route::get('/shipment', [\App\Http\Controllers\CheckoutController::class, 'shipm
 Route::resource('/orders', \App\Http\Controllers\OrderController::class)
     ->middleware('auth');
 
+// PayPal payment routes
+Route::get('/paypal/checkout', [\App\Http\Controllers\PayPalController::class, 'getExpressCheckout']);
+
+Route::get('/paypal/checkout-success', [\App\Http\Controllers\PayPalController::class, 'getExpressCheckoutSuccess'])
+    ->name('paypal.success');
+
+Route::get('/paypal/checkout-cancel', [\App\Http\Controllers\PayPalController::class, 'cancelPage'])
+    ->name('paypal.cancel');
+
 // Auth routes
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

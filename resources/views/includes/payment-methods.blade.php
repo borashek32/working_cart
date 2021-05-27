@@ -10,9 +10,9 @@
             </label>
 
             <label class="inline-flex items-center mt-3">
-                <input type="radio" name="payment_method" value="paypal" id="paypal"
-                       class="form-radio h-5 w-5 text-green-600">
-                <span class="ml-2 text-gray-700">Paypal</span>
+                <div type="radio" name="payment_method" value="paypal" id="paypal"
+                     class="form-radio h-5 w-5 text-green-600"></div>
+                <span class="line-through ml-3 text-gray-700">Paypal</span>
             </label>
 
             <label class="inline-flex items-center mt-3">
